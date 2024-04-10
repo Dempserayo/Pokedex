@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  Modal,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, View, Text, ScrollView, Image } from "react-native";
 
 export const Hero = () => {
   const [pokemonList, setPokemonList] = useState<any[]>([]);
-  const [selectedPokemon, setSelectedPokemon] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchPokemonList = async () => {
@@ -27,85 +18,55 @@ export const Hero = () => {
     fetchPokemonList();
   }, []);
 
-  const handlePokemonPress = (pokemon: any) => {
-    setSelectedPokemon(pokemon);
-  };
-
-  const closeModal = () => {
-    setSelectedPokemon(null);
-  };
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 2 }}>
-        <View
-          style={{ backgroundColor: "white", width: 300, alignSelf: "center" }}
-        >
+        <View className="bg-white w-96 mx-auto rounded-3xl flex justify-center">
           <ScrollView>
             {pokemonList.map((pokemon, index) => (
-              <TouchableOpacity
-                key={index}
-                onPress={() => handlePokemonPress(pokemon)}
-              >
-                <PokemonCard pokemon={pokemon} />
-              </TouchableOpacity>
+              <PokemonCard key={index} pokemon={pokemon} />
             ))}
           </ScrollView>
         </View>
       </ScrollView>
-      <Modal
-        visible={selectedPokemon !== null}
-        transparent={true}
-        animationType="fade"
-      >
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-          }}
-        >
-          <View
-            style={{
-              backgroundColor: "white",
-              padding: 20,
-              borderRadius: 10,
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10 }}
-            >
-              {selectedPokemon?.name}
-            </Text>
-            <Image
-              source={{ uri: selectedPokemon?.sprites.front_default }}
-              style={{ width: 200, height: 200, marginBottom: 20 }}
-            />
-            <TouchableOpacity onPress={closeModal}>
-              <Text style={{ color: "blue", fontSize: 18 }}>Cerrar Modal</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 };
 
+// Componente PokemonCard para mostrar un Pokémon
 const PokemonCard = ({ pokemon }: { pokemon: any }) => {
+  const [pokemonDetails, setPokemonDetails] = useState<any | null>(null);
+
+  useEffect(() => {
+    const fetchPokemonDetails = async () => {
+      try {
+        const response = await fetch(pokemon.url);
+        const data = await response.json();
+        setPokemonDetails(data);
+      } catch (error) {
+        console.error("Error fetching Pokemon details:", error);
+      }
+    };
+
+    fetchPokemonDetails();
+  }, [pokemon.url]);
+
   return (
-    <View
-      style={{
-        backgroundColor: "gray",
-        borderRadius: 8,
-        margin: 10,
-        padding: 10,
-      }}
-    >
-      <Text style={{ fontSize: 16, fontWeight: "bold", color: "white" }}>
-        {pokemon.name}
-      </Text>
+    <View className="bg-gray-200 rounded-3xl h-80 w-80 mx-auto mt-8">
+      {pokemonDetails && (
+        <>
+          <Text className="text-center text-2xl font-bold">
+            {pokemonDetails.name}
+          </Text>
+          <Text className="text-center text-lg font-bold">
+            #{pokemonDetails.id}
+          </Text>
+          <Image
+            source={{ uri: pokemonDetails.sprites.front_default }}
+            style={{ width: 350, height: 300, alignSelf: "center" }}
+          />
+        </>
+      )}
     </View>
   );
 };
