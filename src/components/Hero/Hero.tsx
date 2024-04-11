@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, Text, ScrollView, Image } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export const Hero = () => {
   const [pokemonList, setPokemonList] = useState<any[]>([]);
@@ -21,7 +22,7 @@ export const Hero = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 2 }}>
-        <View className="bg-white w-full mx-auto rounded-3xl flex justify-center">
+        <View className="bg-green-800 opacity-75 h-96 w-full mx-auto rounded-3xl flex justify-center border-8 border-gray-300">
           <ScrollView>
             {pokemonList.map((pokemon, index) => (
               <PokemonCard key={index} pokemon={pokemon} />
@@ -51,18 +52,20 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   }, [pokemon.url]);
 
   return (
-    <View className="bg-gray-200 rounded-3xl h-80 w-80 mx-auto mt-10 my-10 border-2 border-gray-300">
+    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-10 backdrop-blur-3xl">
       {pokemonDetails && (
         <>
-          <Text className="text-center text-white text-5xl font-bold">
+          <Text className="text-center  text-white text-5xl font-bold">
             {pokemonDetails.name}
           </Text>
-          <Text className="text-center text-2xl text-white font-bold">
-            #{pokemonDetails.id}
+          <Text className="text-center text-2xl  text-white font-bold">
+            <MaterialCommunityIcons name="pokemon-go" size={24} color="white" />
+            {pokemonDetails.id}
           </Text>
           <Image
             source={{ uri: pokemonDetails.sprites.front_default }}
             style={{ width: 250, height: 200, alignSelf: "center" }}
+            className="opacity-75 "
           />
         </>
       )}
