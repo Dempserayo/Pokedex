@@ -1,10 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, SafeAreaView, ScrollView, TextInput } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Footer = () => {
   return (
     <View className="flex justify-center">
-      <Text className="text-white font-bold text-center"> DEMPSERAYO </Text>
+      <SafeAreaView style={{ flex: 1 }}></SafeAreaView>
     </View>
   );
 };
