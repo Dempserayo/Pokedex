@@ -33,7 +33,6 @@ export const Hero = () => {
   );
 };
 
-// Componente PokemonCard para mostrar un Pokémon
 const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   const [pokemonDetails, setPokemonDetails] = useState<any | null>(null);
 
@@ -52,18 +51,18 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   }, [pokemon.url]);
 
   return (
-    <View className="bg-gray-200 rounded-3xl h-80 w-80 mx-auto mt-8">
+    <View className="bg-gray-200 rounded-3xl h-80 w-80 mx-auto mt-10 my-10 border-2 border-gray-300">
       {pokemonDetails && (
         <>
-          <Text className="text-center text-2xl font-bold">
+          <Text className="text-center text-white text-5xl font-bold">
             {pokemonDetails.name}
           </Text>
-          <Text className="text-center text-lg font-bold">
+          <Text className="text-center text-2xl text-white font-bold">
             #{pokemonDetails.id}
           </Text>
           <Image
             source={{ uri: pokemonDetails.sprites.front_default }}
-            style={{ width: 350, height: 300, alignSelf: "center" }}
+            style={{ width: 250, height: 200, alignSelf: "center" }}
           />
         </>
       )}
