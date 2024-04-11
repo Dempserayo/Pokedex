@@ -23,7 +23,7 @@ const PokemonList = () => {
   }, []);
 
   return (
-    <SafeAreaView className="bg-red-500 h-screen">
+    <SafeAreaView className="bg-red-600 h-full">
       <Navbar />
       <Hero />
       <Footer />
