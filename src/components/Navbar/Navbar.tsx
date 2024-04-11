@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Navbar = () => {
   return (
     <SafeAreaView className="bg-red-500 h-28 w-full">
-      <Text className="text-white font-bold text-2xl">
+      <Text className="text-white font-bold text-2xl w-full text-center">
         {" "}
         <MaterialCommunityIcons
           name="pokeball"
@@ -20,11 +20,11 @@ const Navbar = () => {
 
       <View className="flex flex-row justify-start items-center mt-4 mx-4">
         <TextInput
-          className="bg-white rounded-full px-4 py-2 w-80 mb-4 mr-2"
+          className="bg-white rounded-full px-4 py-2 w-64 mb-4 mr-2"
           placeholder="Pokedex"
         />
 
-        <Text className="bg-white rounded-full px-4 py-2 w-10 mb-4 mr-2">
+        <Text className="bg-white rounded-full px-4 py-2 w-auto mb-4 mr-2">
           #
         </Text>
       </View>

@@ -21,7 +21,7 @@ export const Hero = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 2 }}>
-        <View className="bg-white w-96 mx-auto rounded-3xl flex justify-center">
+        <View className="bg-white w-full mx-auto rounded-3xl flex justify-center">
           <ScrollView>
             {pokemonList.map((pokemon, index) => (
               <PokemonCard key={index} pokemon={pokemon} />
