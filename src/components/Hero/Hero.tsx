@@ -23,7 +23,7 @@ export const Hero = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView contentContainerStyle={{ flexGrow: 2 }}>
-        <View className="bg-green-800 opacity-75 h-96 w-full mx-auto rounded-3xl flex justify-center border-8 border-gray-300">
+        <View className="bg-white  h-96 w-full mx-auto rounded-3xl flex justify-center border-8 border-gray-400">
           <ScrollView>
             {pokemonList.map((pokemon, index) => (
               <PokemonCard key={index} pokemon={pokemon} />
@@ -53,22 +53,30 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   }, [pokemon.url]);
 
   return (
-    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-20 backdrop-blur-3xl">
+    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-16 backdrop-blur-3xl">
       {pokemonDetails && (
         <>
-          <Text className="text-center  text-green-100 text-4xl font-black">
-            {pokemonDetails.name}
-          </Text>
-          <Text className="text-center text-2xl  text-white font-bold">
-            <MaterialCommunityIcons name="radar" size={24} color="white" />
-            <MaterialCommunityIcons name="pokemon-go" size={24} color="white" />
-            {pokemonDetails.id}
-          </Text>
-          <Image
-            source={{ uri: pokemonDetails.sprites.front_default }}
-            style={{ width: 300, height: 300, alignSelf: "center" }}
-            className="opacity-75 "
-          />
+          <View className="bg-gray-300 rounded-3xl">
+            <Text className="text-center  text-white text-4xl font-black">
+              {pokemonDetails.name}
+            </Text>
+
+            <Text className="text-center text-2xl  text-white font-bold">
+              <MaterialCommunityIcons name="radar" size={24} color="white" />
+              <MaterialCommunityIcons
+                name="pokemon-go"
+                size={24}
+                color="white"
+              />
+              {pokemonDetails.id}
+            </Text>
+
+            <Image
+              source={{ uri: pokemonDetails.sprites.front_default }}
+              style={{ width: 320, height: 300, alignSelf: "center" }}
+              className="opacity-75 bg-gray-200  rounded-3xl"
+            />
+          </View>
         </>
       )}
     </View>
