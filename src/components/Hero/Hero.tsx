@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, View, Text, ScrollView, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export const Hero = () => {
   const [pokemonList, setPokemonList] = useState<any[]>([]);
@@ -52,19 +53,20 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   }, [pokemon.url]);
 
   return (
-    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-10 backdrop-blur-3xl">
+    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-20 backdrop-blur-3xl">
       {pokemonDetails && (
         <>
-          <Text className="text-center  text-white text-5xl font-bold">
+          <Text className="text-center  text-green-100 text-4xl font-black">
             {pokemonDetails.name}
           </Text>
           <Text className="text-center text-2xl  text-white font-bold">
+            <MaterialCommunityIcons name="radar" size={24} color="white" />
             <MaterialCommunityIcons name="pokemon-go" size={24} color="white" />
             {pokemonDetails.id}
           </Text>
           <Image
             source={{ uri: pokemonDetails.sprites.front_default }}
-            style={{ width: 250, height: 200, alignSelf: "center" }}
+            style={{ width: 300, height: 300, alignSelf: "center" }}
             className="opacity-75 "
           />
         </>
