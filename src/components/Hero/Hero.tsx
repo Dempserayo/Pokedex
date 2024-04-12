@@ -22,13 +22,15 @@ export const Hero = () => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ flexGrow: 2 }}>
-        <View className="bg-white  h-96 w-full mx-auto rounded-3xl flex justify-center border-8 border-gray-400">
-          <ScrollView>
-            {pokemonList.map((pokemon, index) => (
-              <PokemonCard key={index} pokemon={pokemon} />
-            ))}
-          </ScrollView>
+      <ScrollView
+        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 10 }}
+      >
+        <View className="bg-white rounded-xl -mx-2 flex flex-row flex-wrap justify-center gap-2">
+          {pokemonList.map((pokemon, index) => (
+            <View key={index} className="flex justify-center items-center">
+              <PokemonCard pokemon={pokemon} />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -42,7 +44,10 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
     const fetchPokemonDetails = async () => {
       try {
         const response = await fetch(pokemon.url);
+        console.log(response);
         const data = await response.json();
+        console.log(data);
+
         setPokemonDetails(data);
       } catch (error) {
         console.error("Error fetching Pokemon details:", error);
@@ -53,32 +58,25 @@ const PokemonCard = ({ pokemon }: { pokemon: any }) => {
   }, [pokemon.url]);
 
   return (
-    <View className="rounded-3xl h-80 w-80 mx-auto mt-10 my-16 backdrop-blur-3xl">
+    <>
       {pokemonDetails && (
-        <>
-          <View className="bg-gray-300 rounded-3xl">
-            <Text className="text-center  text-white text-4xl font-black">
-              {pokemonDetails.name}
-            </Text>
+        <View className="bg-gray-50 border-4 border-gray-200 w-36 flex justify-center items-center h-40 rounded-3xl">
+          <Text className="text-center text-gray-900 text-lg ">
+            {pokemonDetails.name}
+          </Text>
 
-            <Text className="text-center text-2xl  text-white font-bold">
-              <MaterialCommunityIcons name="radar" size={24} color="white" />
-              <MaterialCommunityIcons
-                name="pokemon-go"
-                size={24}
-                color="white"
-              />
-              {pokemonDetails.id}
-            </Text>
+          <Text className="text-center text-xl  text-gray-900">
+            <MaterialCommunityIcons name="radar" size={24} color="gray" />
+            <MaterialCommunityIcons name="pokemon-go" size={24} color="gray" />
+            {pokemonDetails.id}
+          </Text>
 
-            <Image
-              source={{ uri: pokemonDetails.sprites.front_default }}
-              style={{ width: 320, height: 300, alignSelf: "center" }}
-              className="opacity-75 bg-gray-200  rounded-3xl"
-            />
-          </View>
-        </>
+          <Image
+            source={{ uri: pokemonDetails.sprites.front_default }}
+            style={{ width: 90, height: 90, alignSelf: "center" }}
+          />
+        </View>
       )}
-    </View>
+    </>
   );
 };

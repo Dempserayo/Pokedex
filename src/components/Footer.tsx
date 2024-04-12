@@ -13,11 +13,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const Footer = () => {
-  return (
-    <View className="flex justify-center">
-      <Text className="text-center text-white text-xl font-bold">POKEMON</Text>
-    </View>
-  );
+  return <View className="flex justify-center m-2"></View>;
 };
 
 export default Footer;

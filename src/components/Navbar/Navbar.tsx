@@ -5,27 +5,17 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const Navbar = () => {
   return (
-    <SafeAreaView className="bg-red-600  pt-6 w-full">
-      <View className="flex flex-row w-full bg-red-400 mt-2">
-        <View className="rounded-full w-12 h-12 mx-2 border-4 border-gray-400 bg-blue-500">
-          <MaterialIcons name="catching-pokemon" size={40} color="white" />
-        </View>
-
-        <View className="rounded-full w-4 h-4 mx-1 mt-4 border-4 border-red-500 bg-red-500">
-          <MaterialIcons name="catching-pokemon" size={8} color="white" />
-        </View>
-
-        <View className="rounded-full w-4 h-4 mx-1 mt-4 border-4 border-yellow-600 bg-yellow-500">
-          <MaterialIcons name="catching-pokemon" size={8} color="white" />
-        </View>
-
-        <View className="rounded-full w-4 h-4 mx-1 mt-4 border-4 border-green-600 bg-green-500">
-          <MaterialIcons name="catching-pokemon" size={8} color="white" />
-        </View>
-
-        <View className="rounded-full w-full h-4 mx-2 mt-4 border-4 border-gray-300 bg-gray-50"></View>
-      </View>
-
+    <SafeAreaView className="bg-red-600 w-full">
+      <Text className="font-bold text-2xl text-white w-full flex flex-row mx-4 ">
+        {" "}
+        <MaterialCommunityIcons
+          name="pokeball"
+          size={24}
+          color="white"
+          className="shadow-2xl"
+        />{" "}
+        Pokédex{" "}
+      </Text>
       <View className="flex flex-row justify-start items-center mt-4 mx-4">
         <TextInput
           className="bg-white rounded-full font-extrabold px-4 py-2 w-64 mb-4 mr-2"
