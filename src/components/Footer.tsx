@@ -15,7 +15,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 const Footer = () => {
   return (
     <View className="flex justify-center">
-      <Text> Footer here </Text>
+      <Text className="text-center text-white text-xl font-bold">POKEMON</Text>
     </View>
   );
 };
